@@ -41,7 +41,8 @@
       autoOpen: false,
       multiple: true,
       position: {},
-      appendTo: "body"
+      appendTo: "body",
+      enableOptgroupToggle: true
     },
 
     _create: function() {
@@ -152,7 +153,10 @@
 
           // has this optgroup been added already?
           if($.inArray(optLabel, optgroups) === -1) {
-            html += '<li class="ui-multiselect-optgroup-label ' + parent.className + '"><a href="#">' + optLabel + '</a></li>';
+            html += '<li class="ui-multiselect-optgroup-label ' + parent.className + '">';
+            html += (o.enableOptgroupToggle) ? '<a href="#"><span class="' + parent.className + '">' + optLabel + '</span></a>' :
+              '<span class="' + parent.className + '">' + optLabel + '</span>';
+            html += '</li>';
             optgroups.push(optLabel);
           }
         }
@@ -171,7 +175,7 @@
 
         // create the label
         html += '<label for="' + inputID + '" title="' + title + '" class="' + labelClasses.join(' ') + '">';
-        html += '<input id="' + inputID + '" name="multiselect_' + id + '" type="' + (o.multiple ? "checkbox" : "radio") + '" value="' + value + '" title="' + title + '"';
+        html += '<input id="' + inputID + '" name="multiselect_' + id + '" type="' + (o.multiple ? "checkbox" : "radio") + '" value="' + value + '" title="' + description + '"';
 
         // pre-selected?
         if(isSelected) {
