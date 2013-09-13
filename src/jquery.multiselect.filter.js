@@ -152,14 +152,18 @@
       this.cache = this.element.children().map(function() {
         var elem = $(this);
 
-        // account for optgroups
-        if(this.tagName.toLowerCase() === "optgroup") {
-          elem = elem.children();
-        }
+        if (elem.css('display') != 'none') {
 
-        return elem.map(function() {
-          return this.innerHTML.toLowerCase();
-        }).get();
+          // account for optgroups
+          if(this.tagName.toLowerCase() === "optgroup") {
+            elem = elem.children();
+          }
+
+          return elem.map(function() {
+            return this.innerHTML.toLowerCase();
+          }).get();
+
+        }
       }).get();
     },
 
