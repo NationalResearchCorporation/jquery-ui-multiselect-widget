@@ -114,6 +114,9 @@
       } else {
         rows.hide();
 
+        //htmlencoding to handle special characters like "<",">","&"
+        term = $('<div/>').text(term).html();
+
         var regex = new RegExp(term.replace(rEscape, "\\$&"), 'gi');
 
         this._trigger("filter", e, $.map(cache, function(v, i) {
